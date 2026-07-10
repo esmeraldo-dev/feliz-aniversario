@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>protocolo_aniversario.exe</title>
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fontes: Fraunces (carta/serif com personalidade) + JetBrains Mono (linguagem "hacker") + Plus Jakarta Sans (corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+
+    <!-- CSS customizado (fora do Tailwind) -->
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#0A0A10", // fundo principal, quase preto com leve tom violeta
+              panel: "#12121B", // painéis / cards
+              panel2: "#181822", // painéis elevados
+              line: "#26263300", // (não usado diretamente, mantido p/ referência)
+              mist: "#8C89A3", // texto secundário
+              fog: "#F1EFFA", // texto principal claro
+              rose: "#FF7FAE", // acento neon suave 1 (rosa)
+              violet: "#9B8CFF", // acento neon suave 2 (violeta)
+              mint: "#7CF2C7", // acento neon suave 3 (menta) — usado com moderação
+            },
+            fontFamily: {
+              display: ['"Fraunces"', "serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
+              body: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-glow text-fog font-body antialiased overflow-x-hidden">
+    <!-- =====================================================================
+     SEÇÃO 1 — HERO ("boot" do terminal)
+===================================================================== -->
+    <section
+      class="relative min-h-screen flex flex-col items-center justify-center px-6 py-20">
+      <!-- janela de terminal -->
+      <div class="w-full max-w-2xl">
+        <div
+          class="rounded-t-xl bg-panel2 border border-white/5 px-4 py-3 flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-rose/70"></span>
+          <span class="w-3 h-3 rounded-full bg-violet/70"></span>
+          <span class="w-3 h-3 rounded-full bg-mint/70"></span>
+          <span class="ml-3 text-xs font-mono text-mist"
+            >protocolo_aniversario.exe — running</span
+          >
+        </div>
+        <div
+          id="terminal-body"
+          class="rounded-b-xl bg-panel border border-t-0 border-white/5 px-5 py-6 font-mono text-sm sm:text-base leading-relaxed min-h-[9rem]">
+          <!-- preenchido via JS (efeito de digitação) -->
+        </div>
+      </div>
+
+      <!-- título principal -->
+      <h1
+        class="reveal mt-14 text-center font-display text-4xl sm:text-5xl md:text-6xl font-medium leading-[1.15] max-w-3xl">
+        Para a pessoa que
+        <span
+          class="italic text-transparent bg-clip-text bg-gradient-to-r from-violet to-rose"
+          >hackeou</span
+        >
+        meu coração
+      </h1>
+
+      <p
+        class="reveal mt-6 text-center text-mist max-w-md text-base sm:text-lg">
+        Encontrei uma vulnerabilidade não documentada em mim. Ela tem o seu
+        nome.
+      </p>
+
+      <!-- CTA -->
+      <a
+        href="#historia"
+        class="reveal group mt-12 inline-flex items-center gap-3 px-7 py-4 rounded-full bg-panel2 border border-white/10 hover:border-violet/50 transition-colors">
+        <span class="font-mono text-xs text-mint">$</span>
+        <span class="font-medium">Iniciar a jornada</span>
+        <svg
+          class="w-4 h-4 transition-transform group-hover:translate-y-1"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2">
+          <path d="M12 5v14M19 12l-7 7-7-7" />
+        </svg>
+      </a>
+
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[11px] text-mist/50 tracking-widest">
+        scroll ↓
+      </div>
+    </section>
+
+    <!-- =====================================================================
+     SEÇÃO 2 — LINHA DO TEMPO ("git log --our-story")
+===================================================================== -->
+    <section
+      id="historia"
+      class="relative px-6 py-24 sm:py-32 max-w-3xl mx-auto">
+      <div class="reveal mb-16">
+        <p class="font-mono text-xs text-mint tracking-widest">
+          $ git log --our-story --graph
+        </p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">
+          A história até aqui
+        </h2>
+        <p class="text-mist mt-2">
+          Cada marco é um commit que eu jamais daria revert.
+        </p>
+      </div>
+
+      <!--
+    ██ COMO EDITAR A LINHA DO TEMPO ██
+    Cada <li class="commit-line ..."> é um marco. Duplique o bloco para adicionar mais.
+    - data-hash: um "hash" curto (estético, pode inventar, tipo "a1b2c3d")
+    - troque data, título e descrição
+    - troque o src da foto (ou remova a tag <img> e deixe só o placeholder)
+    - troque o texto dentro de .egg-tooltip pela piada interna / mensagem fofa
+  -->
+      <ol class="space-y-14">
+        <li class="commit-line relative pl-8">
+          <span
+            class="commit-dot absolute left-[-5px] top-2 w-3 h-3 rounded-full bg-violet"></span>
+          <div class="reveal">
+            <div
+              class="flex flex-wrap items-center gap-3 font-mono text-xs text-mist">
+              <span class="text-violet">#a1f92c1</span>
+              <span>·</span>
+              <span>DD / MM / AAAA</span>
+              <!-- BADGE / EASTER EGG — clique ou passe o mouse -->
+              <button
+                type="button"
+                class="egg-badge px-2 py-0.5 rounded-full bg-panel2 border border-white/10 hover:border-mint/50 text-mint">
+                #primeiro-commit
+                <span
+                  class="egg-tooltip w-56 text-fog bg-panel2 border border-white/10 rounded-lg px-3 py-2 text-xs leading-snug shadow-xl">
+                  <!-- PIADA INTERNA / MENSAGEM FOFA AQUI -->
+                  Coloque aqui a piadinha interna sobre esse dia 😄
+                </span>
+              </button>
+            </div>
+            <h3 class="font-display text-xl sm:text-2xl mt-3">
+              Título do marco 1 (ex: "Onde tudo começou")
+            </h3>
+            <p class="text-mist mt-2 max-w-lg">
+              Descreva aqui esse momento — como se conheceram, o que sentiram,
+              um detalhe pequeno que só vocês entendem.
+            </p>
+            <!-- FOTO — substitua o src abaixo pela sua imagem -->
+            <div
+              class="mt-5 w-full sm:w-72 aspect-[4/3] rounded-xl overflow-hidden photo-slot border border-white/5">
+              <img
+                src="COLOQUE_AQUI_O_CAMINHO_DA_FOTO_1.jpg"
+                alt="Marco 1"
+                class="w-full h-full object-cover"
+                onerror="this.style.display = 'none'" />
+            </div>
+          </div>
+        </li>
+
+        <li class="commit-line relative pl-8">
+          <span
+            class="commit-dot absolute left-[-5px] top-2 w-3 h-3 rounded-full bg-rose"></span>
+          <div class="reveal">
+            <div
+              class="flex flex-wrap items-center gap-3 font-mono text-xs text-mist">
+              <span class="text-rose">#b7e410d</span>
+              <span>·</span>
+              <span>DD / MM / AAAA</span>
+              <button
+                type="button"
+                class="egg-badge px-2 py-0.5 rounded-full bg-panel2 border border-white/10 hover:border-mint/50 text-mint">
+                #easter-egg
+                <span
+                  class="egg-tooltip w-56 text-fog bg-panel2 border border-white/10 rounded-lg px-3 py-2 text-xs leading-snug shadow-xl">
+                  Coloque aqui outra piadinha ou lembrança fofa 💬
+                </span>
+              </button>
+            </div>
+            <h3 class="font-display text-xl sm:text-2xl mt-3">
+              Título do marco 2 (ex: "O primeiro 'eu te amo'")
+            </h3>
+            <p class="text-mist mt-2 max-w-lg">
+              Descreva esse momento com detalhes que fazem ela se lembrar
+              exatamente de como foi.
+            </p>
+            <div
+              class="mt-5 w-full sm:w-72 aspect-[4/3] rounded-xl overflow-hidden photo-slot border border-white/5">
+              <img
+                src="COLOQUE_AQUI_O_CAMINHO_DA_FOTO_2.jpg"
+                alt="Marco 2"
+                class="w-full h-full object-cover"
+                onerror="this.style.display = 'none'" />
+            </div>
+          </div>
+        </li>
+
+        <li class="commit-line relative pl-8">
+          <span
+            class="commit-dot absolute left-[-5px] top-2 w-3 h-3 rounded-full bg-mint"></span>
+          <div class="reveal">
+            <div
+              class="flex flex-wrap items-center gap-3 font-mono text-xs text-mist">
+              <span class="text-mint">#c93a887</span>
+              <span>·</span>
+              <span>DD / MM / AAAA</span>
+              <button
+                type="button"
+                class="egg-badge px-2 py-0.5 rounded-full bg-panel2 border border-white/10 hover:border-mint/50 text-mint">
+                #vibe-check
+                <span
+                  class="egg-tooltip w-56 text-fog bg-panel2 border border-white/10 rounded-lg px-3 py-2 text-xs leading-snug shadow-xl">
+                  Mais uma piadinha interna vai aqui 🎈
+                </span>
+              </button>
+            </div>
+            <h3 class="font-display text-xl sm:text-2xl mt-3">
+              Título do marco 3 (ex: "A viagem inesquecível")
+            </h3>
+            <p class="text-mist mt-2 max-w-lg">
+              Adicione quantos marcos quiser duplicando este bloco &lt;li&gt;.
+            </p>
+            <div
+              class="mt-5 w-full sm:w-72 aspect-[4/3] rounded-xl overflow-hidden photo-slot border border-white/5">
+              <img
+                src="COLOQUE_AQUI_O_CAMINHO_DA_FOTO_3.jpg"
+                alt="Marco 3"
+                class="w-full h-full object-cover"
+                onerror="this.style.display = 'none'" />
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =====================================================================
+     SEÇÃO 3 — GERADOR DE MOTIVOS
+===================================================================== -->
+    <section class="relative px-6 py-24 sm:py-32">
+      <div class="max-w-xl mx-auto text-center reveal">
+        <p class="font-mono text-xs text-mint tracking-widest">
+          $ ./compilar_motivo.sh
+        </p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">
+          Por que eu te amo hoje?
+        </h2>
+        <p class="text-mist mt-2">
+          Rode quantas vezes quiser. O output nunca é o mesmo — mas o motivo de
+          fundo, sempre é.
+        </p>
+
+        <button
+          id="btn-compilar"
+          class="btn-compile mt-10 px-8 py-4 rounded-full font-semibold text-ink text-base sm:text-lg">
+          Compilar motivo →
+        </button>
+
+        <div class="mt-10 min-h-[7rem] flex items-center justify-center">
+          <p
+            id="motivo-output"
+            class="fade-swap font-display italic text-xl sm:text-2xl leading-relaxed max-w-md">
+            clique no botão para gerar seu primeiro motivo ✦
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+     SEÇÃO 4 — GRAND FINALE (carta + partículas + player)
+===================================================================== -->
+    <section class="relative px-6 py-24 sm:py-36 overflow-hidden">
+      <!-- Canvas de partículas discretas -->
+      <canvas id="particles" class="pointer-events-none"></canvas>
+
+      <div class="relative max-w-xl mx-auto reveal">
+        <p class="font-mono text-xs text-center text-mint tracking-widest">
+          $ cat carta_final.txt
+        </p>
+
+        <div
+          class="letter-paper mt-6 rounded-2xl px-7 py-10 sm:px-12 sm:py-14 shadow-2xl">
+          <p class="font-mono text-[11px] text-mist mb-6">
+            // mensagem descriptografada com sucesso
+          </p>
+
+          <!--
+        ██ SUBSTITUA O TEXTO DA CARTA ABAIXO ██
+        Pode usar quantos parágrafos quiser — cada <p> vira um parágrafo.
+      -->
+          <div
+            class="font-display text-lg sm:text-xl leading-relaxed text-fog space-y-5">
+            <p>Minha querida, Cindelera</p>
+            <p>
+              Escreva aqui o início da sua carta — como você se sente ao lembrar
+              do dia em que a conheceu, ou o que essa data significa para você.
+            </p>
+            <p>
+              Continue com mais um parágrafo sobre o que ela representa na sua
+              vida hoje.
+            </p>
+            <p class="text-right italic">— Vinicius Esmeraldo</p>
+          </div>
+
+          <!-- Player de áudio customizado — "nossa música" -->
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <p class="font-mono text-[11px] text-mist mb-4">// now playing</p>
+
+            <div
+              class="flex items-center gap-4 bg-panel2 border border-white/10 rounded-xl px-4 py-3">
+              <button
+                id="btn-play"
+                class="shrink-0 w-11 h-11 rounded-full bg-gradient-to-br from-violet to-rose flex items-center justify-center">
+                <svg
+                  id="icon-play"
+                  class="w-4 h-4 text-ink ml-0.5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <svg
+                  id="icon-pause"
+                  class="w-4 h-4 text-ink hidden"
+                  viewBox="0 0 24 24"
+                  fill="currentColor">
+                  <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+                </svg>
+              </button>
+
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium truncate">Nome da nossa música</p>
+                <p class="text-xs text-mist truncate">Artista</p>
+                <input
+                  id="seek"
+                  type="range"
+                  class="seek w-full mt-2"
+                  min="0"
+                  max="100"
+                  value="0" />
+              </div>
+            </div>
+
+            <!-- ÁUDIO — troque o src pelo arquivo de música (ou apague a tag <audio> se for usar só o link do Spotify) -->
+            <audio
+              id="player"
+              src="COLOQUE_AQUI_O_CAMINHO_DO_AUDIO.mp3"></audio>
+
+            <!-- Link do Spotify — troque o href pelo link real da música -->
+            <a
+              href="https://open.spotify.com/COLOQUE_O_LINK_AQUI"
+              target="_blank"
+              rel="noopener"
+              class="mt-4 inline-flex items-center gap-2 text-xs text-mist hover:text-mint transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.32-1.32 9.719-.66 13.439 1.621.361.181.54.78.302 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.72-.18-.6.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.301.421-1.021.599-1.56.3z" />
+              </svg>
+              ouvir no Spotify
+            </a>
+          </div>
+        </div>
+
+        <p class="text-center font-mono text-xs text-mist/60 mt-10">
+          feliz aniversário ✦
+        </p>
+      </div>
+    </section>
+
+    <footer class="text-center text-xs text-mist/40 font-mono pb-10">
+      compilado com ♥ — 0 erros, 0 arrependimentos
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
